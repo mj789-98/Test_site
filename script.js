@@ -6,3 +6,12 @@ document.getElementById("demo").onmouseout = function() {
   this.style.backgroundColor = "white";
 }
 
+const text = document.getElementById('new');
+text.addEventListener('mouseenter', () => {
+  text.style.color = 'red';
+});
+text.addEventListener('mouseleave', () => {
+  text.style.color = 'blue';
+});
+
+
