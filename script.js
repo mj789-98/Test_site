@@ -1,4 +1,4 @@
-alert("Hello, world!");
+alert("Welcome, This site is a demo Website!!!");
 document.getElementById("demo").onmouseover = function() {
   this.style.backgroundColor = "blue";
 }
