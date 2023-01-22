@@ -161,7 +161,7 @@ header {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 300px) {
     header {
         display: block;
     }
@@ -204,7 +204,7 @@ header {
 
 /* Content CSS */
 .container {
-    height: 100vh;
+    height: 50vh;
     display: grid;
     place-items: center;
     background-repeat: no-repeat;
