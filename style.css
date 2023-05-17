@@ -11,6 +11,10 @@ header {
     text-align: center;
 }
 
+.container{
+    display:flex;
+    display-direction:row;
+}
 nav {
     display: flex;
     justify-content: space-around;
