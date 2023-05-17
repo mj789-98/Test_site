@@ -11,8 +11,11 @@ header {
     text-align: center;
 }
 
-.container{
-    display:block;
+.fa fa{
+    display:flex;
+    display-direction:row;
+    display-direction:center;
+}
     
 }
 nav {
