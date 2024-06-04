@@ -1,8 +1,4 @@
-import {
-  algorithms,
-  devnotes,
-  oscs,
-} from "../assets";
+import { algorithms, devnotes, oscs } from "../assets";
 
 export const navLinks = [
   {
@@ -25,9 +21,9 @@ export const navLinks = [
 
 const experiences = [
   {
-    title: "YouTube Content Creator",
-    company_name: "Self Employed",
-    date: "2016 - Present",
+    title: "Unity VR Developer",
+    company_name: "Starwatch Technologies",
+    date: "2023 - Present",
     details: [
       "Built a subscriber base of over <span style='color: white;'>500,000 subscribers</span> by creating video content to help programmers.",
       "Crafted visually appealling programming videos that have garnered over <span style='color: white;'>30,000,000 views</span>.",
@@ -88,4 +84,3 @@ const portfolio = [
 ];
 
 export { experiences, portfolio };
-
