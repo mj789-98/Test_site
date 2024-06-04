@@ -52,8 +52,8 @@ const experiences = [
   },
   {
     title: "Computer Science",
-    company_name: "ODU",
-    date: "2015 - 2018",
+    company_name: "GITS",
+    date: "2021 - 2025",
     details: [
       "Built a <span style='color: white;'>computer science foundation</span> learning theory, computer architecture, and software engineering.",
       "Worked and interned at <span style='color: white;'>NASA and Norfolk Southern Railway</span> to gain practical experience in the field of data analysis.",
