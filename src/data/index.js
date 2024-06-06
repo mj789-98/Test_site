@@ -64,9 +64,9 @@ const experiences = [
 
 const portfolio = [
   {
-    name: "Open Source Computer Science Repo",
+    name: "Published on Google PlayStore",
     description:
-      "A GitHub repo with over 17,000 stars containing a curated list of free online courses from reputable universities that satisfy undergraduate computer science requirements.",
+      "Published a game on Google PlayStore as an Indie game Developer",
     image: oscs,
   },
   {
