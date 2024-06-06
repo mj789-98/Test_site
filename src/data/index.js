@@ -70,9 +70,9 @@ const portfolio = [
     image: oscs,
   },
   {
-    name: "Dev Notes",
+    name: "PC Game",
     description:
-      "A newsletter with over 6,000 readers made for software developers to keep up with this rapidly evolving industry, with a sister platform in progress.",
+      "Touch the finish line, avoiding obstacles in different challenging environments",
     image: devnotes,
   },
   {

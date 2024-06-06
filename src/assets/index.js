@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import menu from "./menu.svg";
 
 import algorithms from "./algorithms.png";
-import devnotes from "./devnotes.png";
-import oscs from "./Goku.png";
+import devnotes from "./Goku.png";
+import oscs from "./PC.png";
 
 export { algorithms, close, devnotes, logo, menu, oscs };
