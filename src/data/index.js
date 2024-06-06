@@ -21,8 +21,8 @@ export const navLinks = [
 
 const experiences = [
   {
-    title: "Unity VR Developer",
-    company_name: "Starwatch Technologies",
+    title: "Game Design Intern",
+    company_name: "Fun motion labs",
     date: "2023 - Present",
     details: [
       "Built a subscriber base of over <span style='color: white;'>500,000 subscribers</span> by creating video content to help programmers.",
@@ -31,25 +31,25 @@ const experiences = [
     ],
   },
   {
-    title: "Software Developer",
-    company_name: "Indie",
-    date: "2019 - 2023",
+    title: "Unity VR Developer",
+    company_name: "Starwatch Technologies",
+    date: "June2023 - November2023",
     details: [
       "Developed and delivered custom interdisciplinary coding portfolio for clients including <span style='color: white;'>Nvidia, Hostinger, and Amazon</span>.",
       "<span style='color: white;'>Designed and developed innovative</span> AI applications and interactive websites.",
       "<span style='color: white;'>Managed full project lifecycle</span> from concept to deployment in successful and timely project completions.",
     ],
   },
-  {
-    title: "Software Engineer",
-    company_name: "Prime 3",
-    date: "2018 - 2019",
-    details: [
-      "Built custom enterprise applications for a <span style='color: white;'>Fortune 500 company</span> as a full-stack software engineer.",
-      "Developed and maintained <span style='color: white;'>scalable backend services</span>, ensuring high availability for critical business applications.",
-      "<span style='color: white;'>Collaborated with a team</span> to design and implement front-end interfaces.",
-    ],
-  },
+  // {
+  //   title: "Software Engineer",
+  //   company_name: "Prime 3",
+  //   date: "2018 - 2019",
+  //   details: [
+  //     "Built custom enterprise applications for a <span style='color: white;'>Fortune 500 company</span> as a full-stack software engineer.",
+  //     "Developed and maintained <span style='color: white;'>scalable backend services</span>, ensuring high availability for critical business applications.",
+  //     "<span style='color: white;'>Collaborated with a team</span> to design and implement front-end interfaces.",
+  //   ],
+  // },
   {
     title: "Computer Science",
     company_name: "GITS",
