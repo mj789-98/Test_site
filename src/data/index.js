@@ -25,9 +25,9 @@ const experiences = [
     company_name: "Fun motion labs",
     date: "2023 - Present",
     details: [
-      "Built a subscriber base of over <span style='color: white;'>500,000 subscribers</span> by creating video content to help programmers.",
-      "Crafted visually appealling programming videos that have garnered over <span style='color: white;'>30,000,000 views</span>.",
-      "Produced high-quality educational and entertaining videos for clients including <span style='color: white;'>Intel, JetBrains, and MicroCenter</span>.",
+      "Built a Complete  <span style='color: white;'>Golf game</span> for pc and VR devices",
+      "Crafted visually appealling Golf courses with<span style='color: white;'>Beautiful Locations</span>.",
+      "Produced high-quality educational and entertaining tutorial videos for<span style='color: white;'>New user and expert</span>.",
     ],
   },
   {
@@ -76,9 +76,8 @@ const portfolio = [
     image: devnotes,
   },
   {
-    name: "Visually Understanding Algorithms",
-    description:
-      "A showcase of animated algorithms coded using TypeScript, with the video garnering over 400,000 views.",
+    name: "Visually Understanding Data",
+    description: "A showcase of animated data in VR environment",
     image: algorithms,
   },
 ];
