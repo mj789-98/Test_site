@@ -35,8 +35,8 @@ const experiences = [
     company_name: "Starwatch Technologies",
     date: "June2023 - November2023",
     details: [
-      "Developed and delivered custom interdisciplinary coding portfolio for clients including <span style='color: white;'>Nvidia, Hostinger, and Amazon</span>.",
-      "<span style='color: white;'>Designed and developed innovative</span> AI applications and interactive websites.",
+      "Developed and delivered custom interdisciplinary VR portfolio for  <span style='color: white;'>Clients and Company3</span>.",
+      "<span style='color: white;'>Designed and developed innovative</span> VR applications and interactive Games.",
       "<span style='color: white;'>Managed full project lifecycle</span> from concept to deployment in successful and timely project completions.",
     ],
   },
@@ -56,8 +56,8 @@ const experiences = [
     date: "2021 - 2025",
     details: [
       "Built a <span style='color: white;'>computer science foundation</span> learning theory, computer architecture, and software engineering.",
-      "Worked and interned at <span style='color: white;'>NASA and Norfolk Southern Railway</span> to gain practical experience in the field of data analysis.",
-      "Acted as a member of the <span style='color: white;'>Association for Computing Machinery</span> (ACM).",
+      "Worked and interned at <span style='color: white;'>VR and Game Design companies</span> to gain practical experience in the field of data analysis.",
+      "Acted as a member of the <span style='color: white;'>Unity developer community</span> (ACM).",
     ],
   },
 ];
