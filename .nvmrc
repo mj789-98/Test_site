@@ -1,0 +1,2 @@
+# Specify Node.js version for Netlify
+NODE_VERSION=18.20.4
