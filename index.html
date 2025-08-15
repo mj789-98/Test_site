@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Load only necessary font weights -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload critical assets -->
+    <link
+      rel="preload"
+      href="/src/assets/3d/spaceman.glb"
+      as="fetch"
+      crossorigin="anonymous"
+    />
+    <link rel="preload" href="/parallax/1Stars.svg" as="image" />
+    <link rel="preload" href="/parallax/2Planets.svg" as="image" />
+
     <title>Manas's Portfolio</title>
   </head>
   <body>
