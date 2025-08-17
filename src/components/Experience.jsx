@@ -9,7 +9,7 @@ import { textVariant } from "../utils/motion";
 const ExperienceCard = ({ id, experience, onClick, isActive, isMobile }) => {
   return (
     <div
-  id={id}
+      id={id}
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -19,22 +19,28 @@ const ExperienceCard = ({ id, experience, onClick, isActive, isMobile }) => {
           onClick();
         }
       }}
-      className={`cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center ${
+      className={`group cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center rounded-xl transition-colors duration-200 ${
+        isActive || isMobile
+          ? "bg-white/5"
+          : "hover:bg-white/5 focus:bg-white/5"
+      } ${
         isMobile ? "text-quaternary" : ""
-      }`}
+      } focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary/60`}
     >
       {(isActive || isMobile) && (
         <div className="absolute left-0 top-0 bottom-0 w-3 md:w-5 bg-tertiary my-6 sm:block hidden"></div>
       )}
       <h3
-        className={`text-xl lg:text-2xl xl:text-3xl font-bold sm:pl-8 ${
-          isActive || isMobile ? "text-quaternary" : "text-slate-600"
+        className={`text-xl lg:text-2xl xl:text-3xl font-bold sm:pl-8 transition-colors ${
+          isActive || isMobile
+            ? "text-quaternary"
+            : "text-slate-600 group-hover:text-quaternary"
         }`}
       >
         {experience.title}
       </h3>
       <p
-        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 ${
+        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 transition-colors ${
           isActive || isMobile ? "text-white" : "text-slate-600"
         }`}
       >
@@ -48,7 +54,7 @@ const ExperienceCard = ({ id, experience, onClick, isActive, isMobile }) => {
 const ExperienceDetails = ({ experience }) => {
   return (
     <div className="mt-5">
-      <ul className="max-w-7xl list-none space-y-8 border-4 lg:border-8 rounded-xl lg:rounded-3xl p-6">
+      <ul className="max-w-7xl list-none space-y-8 border-4 lg:border-8 rounded-xl lg:rounded-3xl p-6 bg-white/5 backdrop-blur-[1px]">
         {experience.details.map((detail, index) => (
           <li
             key={`experience-detail-${index}`}
@@ -86,7 +92,10 @@ const Experience = () => {
 
       <div className="relative mt-10 md:mt-20 md:p-20 flex flex-col gap-6">
         {experiences.map((experience, index) => (
-          <div key={`experience-row-${index}`} className="w-full sm:grid sm:grid-cols-2 sm:gap-6">
+          <div
+            key={`experience-row-${index}`}
+            className="w-full sm:grid sm:grid-cols-2 sm:gap-6"
+          >
             <ExperienceCard
               id={`exp-${index}`}
               experience={experience}
@@ -96,13 +105,20 @@ const Experience = () => {
                   // Smoothly bring selected card and inline details into view on mobile
                   requestAnimationFrame(() => {
                     const el = document.getElementById(`exp-${index}`);
-                    el?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                    el?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                      inline: "nearest",
+                    });
                   });
                 } else {
                   // Keep the interaction local: center the clicked row without jumping up
                   requestAnimationFrame(() => {
                     const row = document.getElementById(`exp-${index}`);
-                    row?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    row?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
                   });
                 }
               }}
@@ -113,7 +129,13 @@ const Experience = () => {
             {/* Desktop/tablet inline details beside the clicked card */}
             <div className="hidden sm:block">
               {selectedJob === experience ? (
-                <ExperienceDetails experience={experience} />
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ExperienceDetails experience={experience} />
+                </motion.div>
               ) : (
                 <div className="h-0" aria-hidden="true"></div>
               )}
@@ -121,9 +143,14 @@ const Experience = () => {
 
             {/* Mobile inline details below the card */}
             {isMobile && selectedJob === experience && (
-              <div className="sm:hidden col-span-2 px-2">
+              <motion.div
+                className="sm:hidden col-span-2 px-2"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
                 <ExperienceDetails experience={experience} />
-              </div>
+              </motion.div>
             )}
           </div>
         ))}

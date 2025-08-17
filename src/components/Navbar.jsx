@@ -19,24 +19,27 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const sections = document.querySelectorAll("div[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50% 0px",
-      }
-    );
+    // Observe top-level sections and derive the most visible one.
+    const sections = Array.from(document.querySelectorAll("[data-section-id]"));
 
-    sections.forEach((section) => observer.observe(section));
+    const handleIntersect = (entries) => {
+      // Compute the entry with the largest intersection ratio among visible ones
+      const visible = entries.filter((e) => e.isIntersecting);
+      if (visible.length === 0) return;
+      const top = visible.reduce((max, e) =>
+        e.intersectionRatio > max.intersectionRatio ? e : max
+      );
+      const id = top.target.getAttribute("data-section-id");
+      if (id) setActive(id);
+    };
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    const observer = new IntersectionObserver(handleIntersect, {
+      threshold: [0.15, 0.3, 0.5, 0.75, 1],
+      rootMargin: "0px 0px -35% 0px",
+    });
+
+    sections.forEach((sec) => observer.observe(sec));
+    return () => sections.forEach((sec) => observer.unobserve(sec));
   }, []);
 
   return (
@@ -59,15 +62,18 @@ const Navbar = () => {
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className={`relative flex items-center ${
+              className={`group relative flex items-center ${
                 active === nav.id ? "text-white" : "text-slate-500"
-              } hover:text-white text-[18px] lg:text-[24px] font-bold pointer-events-auto cursor-pointer`}
+              } hover:text-white text-[18px] lg:text-[24px] font-bold pointer-events-auto cursor-pointer transition-colors`}
               onClick={() => setActive(nav.id)}
             >
               {active === nav.id && (
                 <div className="fixed right-10 w-2 h-6 lg:h-8 bg-quaternary"></div>
               )}
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`} className="relative">
+                {nav.title}
+                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-quaternary transition-all duration-200 group-hover:w-full"></span>
+              </a>
             </li>
           ))}
         </ul>

@@ -21,13 +21,16 @@ const SkillsGrid = () => {
       className="mt-10 md:mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
     >
       {skills.map((skill, idx) => (
-        <li
+        <motion.li
           key={`skill-${idx}`}
-          className="px-4 py-2 md:px-5 md:py-3 rounded-full border border-slate-700/60 bg-black/30 text-white text-xs sm:text-sm md:text-base font-semibold hover:bg-black/50 transition-colors"
+          whileHover={{ y: -2, scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          className="px-4 py-2 md:px-5 md:py-3 rounded-full border border-slate-700/60 bg-black/30 text-white text-xs sm:text-sm md:text-base font-semibold transition-all duration-200 ease-out hover:bg-black/50 hover:border-slate-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-quaternary"
           title={typeof skill === "string" ? skill : skill?.name}
+          tabIndex={0}
         >
           {typeof skill === "string" ? skill : skill?.name}
-        </li>
+        </motion.li>
       ))}
     </motion.ul>
   );

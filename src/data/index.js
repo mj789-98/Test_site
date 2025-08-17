@@ -105,16 +105,32 @@ const portfolio = [
 ];
 
 export { experiences, portfolio };
-// Basic skills list used by the Skills section. Replace/update from CV as needed.
+// CV-aligned skills list
 export const skills = [
+  // Core Game/VR
   "Unity",
   "C#",
   "VR Development",
+  "XR Interaction Toolkit",
+  "Oculus SDK",
+  "Multiplayer (Networking)",
+
+  // Backend/Services
+  "Firebase",
+
+  // Design & Content
   "Game Design",
+  "Level Design",
+  "UI/UX",
+  "Animation",
   "Blender",
   "3D Modeling",
+
+  // Web & Tools
   "JavaScript",
   "React",
   "Git",
+
+  // General
   "Problem Solving",
 ];
