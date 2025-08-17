@@ -6,10 +6,19 @@ import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({ experience, onClick, isActive, isMobile }) => {
+const ExperienceCard = ({ id, experience, onClick, isActive, isMobile }) => {
   return (
     <div
+  id={id}
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       className={`cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center ${
         isMobile ? "text-quaternary" : ""
       }`}
@@ -29,7 +38,8 @@ const ExperienceCard = ({ experience, onClick, isActive, isMobile }) => {
           isActive || isMobile ? "text-white" : "text-slate-600"
         }`}
       >
-        {experience.company_name} | {experience.date}
+        {experience.company_name}
+        {experience.date ? ` | ${experience.date}` : ""}
       </p>
     </div>
   );
@@ -71,30 +81,55 @@ const Experience = () => {
   return (
     <div className="sm:my-20">
       <motion.div variants={textVariant()}>
-        <h2 className={`${styles.sectionText} text-center`}>
-          Experience
-        </h2>
+        <h2 className={`${styles.sectionText} text-center`}>Experience</h2>
       </motion.div>
 
-      <div className="relative mt-10 md:mt-20 md:p-20 flex flex-col items-center sm:flex-row sm:items-start">
-        <div className="flex flex-col z-10 sm:w-auto sm:w-full">
-          {experiences.map((experience, index) => (
+      <div className="relative mt-10 md:mt-20 md:p-20 flex flex-col gap-6">
+        {experiences.map((experience, index) => (
+          <div key={`experience-row-${index}`} className="w-full sm:grid sm:grid-cols-2 sm:gap-6">
             <ExperienceCard
-              key={`experience-${index}`}
+              id={`exp-${index}`}
               experience={experience}
-              onClick={() => setSelectedJob(experience)}
+              onClick={() => {
+                setSelectedJob(experience);
+                if (isMobile) {
+                  // Smoothly bring selected card and inline details into view on mobile
+                  requestAnimationFrame(() => {
+                    const el = document.getElementById(`exp-${index}`);
+                    el?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+                  });
+                } else {
+                  // Keep the interaction local: center the clicked row without jumping up
+                  requestAnimationFrame(() => {
+                    const row = document.getElementById(`exp-${index}`);
+                    row?.scrollIntoView({ behavior: "smooth", block: "center" });
+                  });
+                }
+              }}
               isActive={selectedJob === experience}
               isMobile={isMobile}
             />
-          ))}
-        </div>
 
-        <div className="flex justify-end z-10 sm:block hidden">
-          <ExperienceDetails experience={selectedJob} />
-        </div>
+            {/* Desktop/tablet inline details beside the clicked card */}
+            <div className="hidden sm:block">
+              {selectedJob === experience ? (
+                <ExperienceDetails experience={experience} />
+              ) : (
+                <div className="h-0" aria-hidden="true"></div>
+              )}
+            </div>
+
+            {/* Mobile inline details below the card */}
+            {isMobile && selectedJob === experience && (
+              <div className="sm:hidden col-span-2 px-2">
+                <ExperienceDetails experience={experience} />
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default SectionWrapper(Experience, "portfolio");
+export default SectionWrapper(Experience, "experience");

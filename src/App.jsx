@@ -1,6 +1,13 @@
 import { useEffect, useRef } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Contact, Experience, Hero, Navbar, Portfolio } from "./components";
+import {
+  Contact,
+  Experience,
+  Hero,
+  Navbar,
+  Portfolio,
+  Skills,
+} from "./components";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 
 const App = () => {
@@ -20,6 +27,9 @@ const App = () => {
           </div>
           <div id="experience" className="relative z-30 bg-primary">
             <Experience />
+          </div>
+          <div id="skills" className="relative z-30 bg-primary">
+            <Skills />
           </div>
           <div id="contact" className="relative z-30 bg-primary">
             <Contact />

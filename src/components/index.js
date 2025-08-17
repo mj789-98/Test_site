@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import PerformanceMonitor from "./PerformanceMonitor";
 import Portfolio from "./Portfolio";
 import Position from "./Position";
+import Skills from "./Skills";
 import SpacemanCanvas from "./Spaceman";
 
 export {
@@ -19,5 +20,6 @@ export {
   PerformanceMonitor,
   Portfolio,
   Position,
+  Skills,
   SpacemanCanvas,
 };

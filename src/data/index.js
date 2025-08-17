@@ -14,6 +14,10 @@ export const navLinks = [
     title: "Experience",
   },
   {
+    id: "skills",
+    title: "Skills",
+  },
+  {
     id: "contact",
     title: "Contact",
   },
@@ -21,43 +25,61 @@ export const navLinks = [
 
 const experiences = [
   {
-    title: "Game Design Intern",
-    company_name: "Fun motion labs",
-    date: "2023 - Present",
+    title: "Game Developer",
+    company_name: "Paymind Technology Pvt. Ltd",
+    date: "Sep 2024 – Present · New Delhi, India",
     details: [
-      "Built a Complete  <span style='color: white;'>Golf game</span> for pc and VR devices",
-      "Crafted visually appealling Golf courses with<span style='color: white;'>Beautiful Locations</span>.",
-      "Produced high-quality educational and entertaining tutorial videos for<span style='color: white;'>New user and expert</span>.",
+      "Developed engaging games using <span style='color: white;'>Unity</span>.",
+      "Collaborated with designers and product managers to refine gameplay.",
+      "Applied <span style='color: white;'>Firebase</span> for backend support and user analytics.",
     ],
   },
   {
-    title: "Unity VR Developer",
-    company_name: "Starwatch Technologies",
-    date: "June2023 - November2023",
+    title: "Unity Developer (VR Projects)",
+    company_name: "Alite Reality",
+    date: "Jun 2024 – Sep 2024 · Jaipur, India",
     details: [
-      "Developed and delivered custom interdisciplinary VR portfolio for  <span style='color: white;'>Clients and Company3</span>.",
-      "<span style='color: white;'>Designed and developed innovative</span> VR applications and interactive Games.",
-      "<span style='color: white;'>Managed full project lifecycle</span> from concept to deployment in successful and timely project completions.",
+      "Developed multiplayer VR applications integrated with <span style='color: white;'>Firebase</span>.",
+      "Optimized rendering performance and ensured cross‑platform compatibility.",
+      "Worked with the <span style='color: white;'>UI/UX</span> team to enhance interactivity in VR.",
     ],
   },
-  // {
-  //   title: "Software Engineer",
-  //   company_name: "Prime 3",
-  //   date: "2018 - 2019",
-  //   details: [
-  //     "Built custom enterprise applications for a <span style='color: white;'>Fortune 500 company</span> as a full-stack software engineer.",
-  //     "Developed and maintained <span style='color: white;'>scalable backend services</span>, ensuring high availability for critical business applications.",
-  //     "<span style='color: white;'>Collaborated with a team</span> to design and implement front-end interfaces.",
-  //   ],
-  // },
+  {
+    title: "Game Design Intern",
+    company_name: "FunMotion Labs",
+    date: "Sep 2023 – May 2024 · Noida, India",
+    details: [
+      "Designed core gameplay mechanics and levels for mobile games.",
+      "Created intuitive UI interfaces and debugged functional issues.",
+      "Implemented animations to enhance game dynamics.",
+    ],
+  },
+  {
+    title: "Unity VR Development Intern",
+    company_name: "StarWatch Technologies",
+    date: "Jun 2023 – Sep 2023 · Bangalore, India",
+    details: [
+      "Built interactive VR projects for internal and client use.",
+      "Used Unity's <span style='color: white;'>XR Toolkit</span> and <span style='color: white;'>Oculus SDK</span> for immersive experiences.",
+    ],
+  },
+  {
+    title: "Solo Developer",
+    company_name: "Indie Game Developer",
+    date: "",
+    details: [
+      "Published an Android game on Google Play Store and a PC game on <span style='color: white;'>itch.io</span>.",
+      "Managed the full development lifecycle from ideation to release.",
+    ],
+  },
   {
     title: "Computer Science",
     company_name: "GITS",
-    date: "2021 - 2025",
+    date: "2021 – 2025 · Udaipur, India",
     details: [
-      "Built a <span style='color: white;'>computer science foundation</span> learning theory, computer architecture, and software engineering.",
-      "Worked and interned at <span style='color: white;'>VR and Game Design companies</span> to gain practical experience in the field of data analysis.",
-      "Acted as a member of the <span style='color: white;'>Unity developer community</span> (ACM).",
+      "Built a foundation in <span style='color: white;'>algorithms</span>, <span style='color: white;'>computer architecture</span>, and <span style='color: white;'>software engineering</span>.",
+      "Completed internships and projects with a focus on <span style='color: white;'>VR and game design</span>.",
+      "Active member of the <span style='color: white;'>Unity developer community</span>.",
     ],
   },
 ];
@@ -83,3 +105,16 @@ const portfolio = [
 ];
 
 export { experiences, portfolio };
+// Basic skills list used by the Skills section. Replace/update from CV as needed.
+export const skills = [
+  "Unity",
+  "C#",
+  "VR Development",
+  "Game Design",
+  "Blender",
+  "3D Modeling",
+  "JavaScript",
+  "React",
+  "Git",
+  "Problem Solving",
+];
