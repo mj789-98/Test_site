@@ -166,6 +166,31 @@
   }
 }
 
+@keyframes pulse-border {
+  0% {
+    border-color: rgb(71 85 105 / 0.6); /* slate-700/60 */
+  }
+  20% {
+    border-color: rgb(100 116 139 / 0.7); /* slate-500/70 */
+  }
+  40% {
+    border-color: rgb(16 185 129 / 0.7); /* emerald-500/70 */
+  }
+  60% {
+    border-color: rgb(59 130 246 / 0.7); /* blue-500/70 */
+  }
+  80% {
+    border-color: rgb(147 51 234 / 0.7); /* purple-600/70 */
+  }
+  100% {
+    border-color: rgb(71 85 105 / 0.6); /* slate-700/60 */
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 3s ease-in-out infinite;
+}
+
 @keyframes mulShdSpin {
   0%,
   100% {
