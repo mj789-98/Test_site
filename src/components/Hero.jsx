@@ -1,4 +1,4 @@
-import { SpacemanCanvas } from ".";
+import { LazySpacemanCanvas } from ".";
 import Position from "./Position";
 
 const Hero = ({ scrollContainer }) => {
@@ -34,7 +34,7 @@ const Hero = ({ scrollContainer }) => {
       <img className="parallax__crater" src="./parallax/5Crater.svg" alt="" />
       <img className="parallax__sun" src="./parallax/6Sun.svg" alt="" />
 
-      <SpacemanCanvas scrollContainer={scrollContainer} />
+      <LazySpacemanCanvas scrollContainer={scrollContainer} />
     </section>
   );
 };

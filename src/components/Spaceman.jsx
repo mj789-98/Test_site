@@ -1,7 +1,7 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
-import spacemanScene from "../assets/3d/spaceman.glb";
+import spacemanScene from "../assets/3d/spaceman-optimized.glb";
 import CanvasLoader from "./Loader";
 
 const Spaceman = ({ scale, position, rotationX, rotationY }) => {

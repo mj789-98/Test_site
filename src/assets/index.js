@@ -2,8 +2,8 @@ import close from "./close.svg";
 import logo from "./logo.svg";
 import menu from "./menu.svg";
 
-import algorithms from "./algorithms.png";
-import devnotes from "./Goku.png";
+import algorithms from "./algorithms.webp";
+import devnotes from "./Goku.webp";
 import oscs from "./PC.png";
 
 export { algorithms, close, devnotes, logo, menu, oscs };

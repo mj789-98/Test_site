@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import {
   Contact,
@@ -10,12 +10,54 @@ import {
 } from "./components";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 
+// Typewriter component for animated text
+const TypewriterText = ({ text, speed = 100 }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedText(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+        // Keep cursor blinking after typing is done
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  // Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 530);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  return (
+    <span>
+      {displayedText}
+      <span className={`typewriter-cursor ${showCursor ? "visible" : "invisible"}`}>|</span>
+    </span>
+  );
+};
+
 const App = () => {
   const wrapperRef = useRef(null);
 
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
+        {/* Under Construction Neon Banner */}
+        <div className="under-construction-banner">
+          <span className="construction-icon">🚧</span>
+          <TypewriterText text="Under Construction" speed={80} />
+          <span className="construction-icon">🚧</span>
+        </div>
         <PerformanceMonitor />
         <Navbar />
         <div className="wrapper" ref={wrapperRef}>

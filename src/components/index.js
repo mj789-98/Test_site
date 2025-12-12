@@ -9,12 +9,14 @@ import Portfolio from "./Portfolio";
 import Position from "./Position";
 import Skills from "./Skills";
 import SpacemanCanvas from "./Spaceman";
+import LazySpacemanCanvas from "./LazySpaceman";
 
 export {
   CanvasLoader,
   Contact,
   Experience,
   Hero,
+  LazySpacemanCanvas,
   LoadingState,
   Navbar,
   PerformanceMonitor,
