@@ -5,5 +5,6 @@ import menu from "./menu.svg";
 import algorithms from "./algorithms.webp";
 import devnotes from "./Goku.webp";
 import oscs from "./PC.png";
+import planeGame from "./plane-game.webp";
 
-export { algorithms, close, devnotes, logo, menu, oscs };
+export { algorithms, close, devnotes, logo, menu, oscs, planeGame };

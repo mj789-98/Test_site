@@ -9,6 +9,7 @@ import { textVariant } from "../utils/motion";
 const ExperienceCard = ({
   id,
   experience,
+  onHover,
   onClick,
   isActive,
   isMobile,
@@ -17,7 +18,8 @@ const ExperienceCard = ({
   return (
     <motion.div
       id={id}
-      onClick={onClick}
+      onClick={isMobile ? onClick : undefined}
+      onMouseEnter={!isMobile ? onHover : undefined}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
@@ -28,13 +30,11 @@ const ExperienceCard = ({
       }}
       aria-expanded={isActive}
       aria-controls={controlsId}
-      className={`group cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center rounded-xl transition-colors duration-200 ${
-        isActive || isMobile
-          ? "bg-white/5"
-          : "hover:bg-white/5 focus:bg-white/5"
-      } ${
-        isMobile ? "text-quaternary" : ""
-      } focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary/60 transition-shadow hover:shadow-lg`}
+      className={`group cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center rounded-xl transition-colors duration-200 ${isActive || isMobile
+        ? "bg-white/5"
+        : "hover:bg-white/5 focus:bg-white/5"
+        } ${isMobile ? "text-quaternary" : ""
+        } focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary/60 transition-shadow hover:shadow-lg`}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.99 }}
     >
@@ -42,34 +42,31 @@ const ExperienceCard = ({
         <div className="absolute left-0 top-0 bottom-0 w-3 md:w-5 bg-tertiary my-6 sm:block hidden"></div>
       )}
       <h3
-        className={`text-xl lg:text-2xl xl:text-3xl font-bold sm:pl-8 transition-colors ${
-          isActive || isMobile
-            ? "text-quaternary"
-            : "text-slate-600 group-hover:text-quaternary"
-        }`}
+        className={`text-xl lg:text-2xl xl:text-3xl font-bold sm:pl-8 transition-colors ${isActive || isMobile
+          ? "text-quaternary"
+          : "text-slate-600 group-hover:text-quaternary"
+          }`}
       >
         {experience.title}
       </h3>
       <p
-        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 transition-colors ${
-          isActive || isMobile ? "text-white" : "text-slate-600"
-        }`}
+        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 transition-colors ${isActive || isMobile ? "text-white" : "text-slate-600"
+          }`}
       >
         {experience.company_name}
         {experience.date ? ` | ${experience.date}` : ""}
       </p>
-      {/* Chevron indicator */}
+      {/* Arrow indicator */}
       <svg
-        className={`hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-transform ${
-          isActive ? "rotate-180" : "rotate-0"
-        }`}
+        className={`hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-transform ${isActive ? "rotate-0" : "rotate-0"
+          }`}
         viewBox="0 0 20 20"
         fill="currentColor"
         aria-hidden="true"
       >
         <path
           fillRule="evenodd"
-          d="M5.23 7.21a.75.75 0 011.06.02L10 10.17l3.71-2.94a.75.75 0 111.04 1.08l-4.24 3.36a.75.75 0 01-.94 0L5.21 8.31a.75.75 0 01.02-1.1z"
+          d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
           clipRule="evenodd"
         />
       </svg>
@@ -125,6 +122,7 @@ const Experience = () => {
             <ExperienceCard
               id={`exp-${index}`}
               experience={experience}
+              onHover={() => setSelectedJob(experience)}
               onClick={() => {
                 const isOpening = selectedJob !== experience;
                 setSelectedJob((prev) =>
@@ -140,15 +138,6 @@ const Experience = () => {
                       inline: "nearest",
                     });
                   });
-                } else if (!isMobile && isOpening) {
-                  // Keep the interaction local: center the clicked row without jumping up
-                  requestAnimationFrame(() => {
-                    const row = document.getElementById(`exp-${index}`);
-                    row?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "center",
-                    });
-                  });
                 }
               }}
               isActive={selectedJob === experience}
@@ -156,20 +145,24 @@ const Experience = () => {
               controlsId={`exp-details-${index}`}
             />
 
-            {/* Desktop/tablet inline details beside the clicked card */}
-            <div className="hidden sm:block">
-              <AnimatePresence initial={false}>
-                {selectedJob === experience ? (
+            {/* Desktop/tablet inline details beside the hovered card */}
+            <div className="hidden sm:block min-h-[200px]">
+              <AnimatePresence mode="popLayout" initial={false}>
+                {selectedJob === experience && (
                   <motion.div
+                    key={experience.title}
                     id={`exp-details-${index}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.18 }}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{
+                      duration: 0.25,
+                      ease: "easeOut"
+                    }}
                   >
                     <ExperienceDetails experience={experience} />
                   </motion.div>
-                ) : null}
+                )}
               </AnimatePresence>
             </div>
 

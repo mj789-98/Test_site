@@ -7,6 +7,7 @@ import {
   Navbar,
   Portfolio,
   Skills,
+  VideoGallery,
 } from "./components";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 
@@ -61,7 +62,7 @@ const App = () => {
         <PerformanceMonitor />
         <Navbar />
         <div className="wrapper" ref={wrapperRef}>
-          <div id="hero" className="z-10">
+          <div id="hero" data-section-id="hero" className="z-10">
             <Hero scrollContainer={wrapperRef} />
           </div>
           <div id="portfolio" className="relative z-30 bg-primary mt-[-2px]">
@@ -72,6 +73,9 @@ const App = () => {
           </div>
           <div id="skills" className="relative z-30 bg-primary">
             <Skills />
+          </div>
+          <div id="videos" data-section-id="videos" className="relative z-30 bg-primary">
+            <VideoGallery />
           </div>
           <div id="contact" className="relative z-30 bg-primary">
             <Contact />

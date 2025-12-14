@@ -10,6 +10,7 @@ import Position from "./Position";
 import Skills from "./Skills";
 import SpacemanCanvas from "./Spaceman";
 import LazySpacemanCanvas from "./LazySpaceman";
+import VideoGallery from "./VideoGallery";
 
 export {
   CanvasLoader,
@@ -24,4 +25,5 @@ export {
   Position,
   Skills,
   SpacemanCanvas,
+  VideoGallery,
 };

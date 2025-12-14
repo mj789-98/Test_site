@@ -1,4 +1,4 @@
-import { algorithms, devnotes, oscs } from "../assets";
+import { algorithms, devnotes, oscs, planeGame } from "../assets";
 
 export const navLinks = [
   {
@@ -18,6 +18,10 @@ export const navLinks = [
     title: "Skills",
   },
   {
+    id: "videos",
+    title: "Videos",
+  },
+  {
     id: "contact",
     title: "Contact",
   },
@@ -25,9 +29,18 @@ export const navLinks = [
 
 const experiences = [
   {
+    title: "Unity Developer",
+    company_name: "Battlebucks",
+    date: "Jun 2025 – Present",
+    details: [
+      "Developing games and interactive experiences using <span style='color: white;'>Unity</span>.",
+      "Working on game mechanics and player engagement features.",
+    ],
+  },
+  {
     title: "Game Developer",
     company_name: "Paymind Technology Pvt. Ltd",
-    date: "Sep 2024 – Present · New Delhi, India",
+    date: "Sep 2024 – May 2025 · New Delhi, India",
     details: [
       "Developed engaging games using <span style='color: white;'>Unity</span>.",
       "Collaborated with designers and product managers to refine gameplay.",
@@ -86,10 +99,18 @@ const experiences = [
 
 const portfolio = [
   {
+    name: "Plane",
+    description:
+      "Fly your plane, dodge obstacles, beat your high score! Classic arcade action on Google Play Store.",
+    image: planeGame,
+    link: "https://play.google.com/store/apps/details?id=com.lightning.android.Plane",
+  },
+  {
     name: "Published on Google PlayStore",
     description:
       "Published a game on Google PlayStore as an Indie game Developer",
     image: oscs,
+    link: "https://play.google.com/store/apps/details?id=com.manasj.guessthepicture",
   },
   {
     name: "PC Game",
