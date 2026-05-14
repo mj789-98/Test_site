@@ -6,15 +6,7 @@ import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({
-  id,
-  experience,
-  onHover,
-  onClick,
-  isActive,
-  isMobile,
-  controlsId,
-}) => {
+const ExperienceCard = ({ id, experience, onHover, onClick, isActive, isMobile, controlsId }) => {
   return (
     <motion.div
       id={id}
@@ -23,43 +15,46 @@ const ExperienceCard = ({
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); }
       }}
       aria-expanded={isActive}
       aria-controls={controlsId}
-      className={`group cursor-pointer sm:mb-5 p-5 max-w-xl relative sm:text-left text-center rounded-xl transition-colors duration-200 ${isActive || isMobile
-        ? "bg-white/5"
-        : "hover:bg-white/5 focus:bg-white/5"
-        } ${isMobile ? "text-quaternary" : ""
-        } focus:outline-none focus-visible:ring-2 focus-visible:ring-tertiary/60 transition-shadow hover:shadow-lg`}
-      whileHover={{ y: -2 }}
+      whileHover={{ x: 4 }}
       whileTap={{ scale: 0.99 }}
+      className={`group cursor-pointer p-6 rounded-2xl relative transition-all duration-200 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]/60 ${
+        isActive
+          ? "bg-white/5 border-white/10"
+          : "border-transparent hover:bg-white/[0.03] hover:border-white/[0.06]"
+      }`}
     >
-      {(isActive || isMobile) && (
-        <div className="absolute left-0 top-0 bottom-0 w-3 md:w-5 bg-tertiary my-6 sm:block hidden"></div>
+      {/* Blue left accent bar */}
+      {isActive && (
+        <div className="absolute left-0 top-4 bottom-4 w-[3px] bg-[#0071e3] rounded-full" />
       )}
-      <h3
-        className={`text-xl lg:text-2xl xl:text-3xl font-bold sm:pl-8 transition-colors ${isActive || isMobile
-          ? "text-quaternary"
-          : "text-slate-600 group-hover:text-quaternary"
+
+      <div className={isActive ? "pl-4" : ""}>
+        <h3
+          className={`text-xl lg:text-2xl font-semibold tracking-tight transition-colors ${
+            isActive ? "text-white" : "text-[#6e6e73] group-hover:text-white"
           }`}
-      >
-        {experience.title}
-      </h3>
-      <p
-        className={`text-md lg:text-lg xl:text-2xl sm:font-medium pt-2 sm:pl-8 transition-colors ${isActive || isMobile ? "text-white" : "text-slate-600"
+        >
+          {experience.title}
+        </h3>
+        <p
+          className={`text-base mt-1 transition-colors ${
+            isActive ? "text-[#a1a1a6]" : "text-[#48484a]"
           }`}
-      >
-        {experience.company_name}
-        {experience.date ? ` | ${experience.date}` : ""}
-      </p>
-      {/* Arrow indicator */}
+        >
+          {experience.company_name}
+          {experience.date ? ` · ${experience.date}` : ""}
+        </p>
+      </div>
+
+      {/* Chevron */}
       <svg
-        className={`hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-transform ${isActive ? "rotate-0" : "rotate-0"
-          }`}
+        className={`hidden sm:block absolute right-5 top-1/2 -translate-y-1/2 h-4 w-4 transition-all duration-200 ${
+          isActive ? "text-[#0071e3] rotate-90" : "text-[#48484a] rotate-0"
+        }`}
         viewBox="0 0 20 20"
         fill="currentColor"
         aria-hidden="true"
@@ -76,16 +71,18 @@ const ExperienceCard = ({
 
 const ExperienceDetails = ({ experience }) => {
   return (
-    <div className="mt-5">
-      <ul className="max-w-7xl list-none space-y-8 rounded-2xl lg:rounded-3xl p-6 lg:p-8 bg-black/30 backdrop-blur-md border border-slate-700/60 shadow-xl shadow-black/20 animate-pulse-border">
-        {experience.details.map((detail, index) => (
-          <li
-            key={`experience-detail-${index}`}
-            className="text-slate-300 font-medium text-[10px] xs:text-[14px] md:text-[18px] lg:text-[22px] xl:text-[28px] lg:leading-[30px]"
-            dangerouslySetInnerHTML={{ __html: detail }}
-          />
-        ))}
-      </ul>
+    <div className="mt-3">
+      <div className="apple-glass p-6 lg:p-8">
+        <ul className="space-y-5">
+          {experience.details.map((detail, index) => (
+            <li
+              key={`experience-detail-${index}`}
+              className="text-[#d1d1d6] text-sm md:text-base lg:text-lg leading-relaxed flex gap-3"
+              dangerouslySetInnerHTML={{ __html: `<span class="text-[#0071e3] font-bold select-none">—</span> ${detail}` }}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
@@ -95,47 +92,34 @@ const Experience = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-
-    handleResize(); // Check initial screen size
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize();
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="sm:my-20">
+    <div className="sm:my-16">
       <motion.div variants={textVariant()}>
-        <h2 className={`${styles.sectionText} text-center`}>Experience</h2>
+        <p className={styles.sectionEyebrow}>Career</p>
+        <h2 className={`${styles.sectionText} text-center md:text-left`}>Experience</h2>
       </motion.div>
 
-      <div className="relative mt-10 md:mt-20 md:p-20 flex flex-col gap-6">
+      <div className="relative mt-10 md:mt-16 md:px-4 flex flex-col gap-3">
         {experiences.map((experience, index) => (
-          <div
-            key={`experience-row-${index}`}
-            className="w-full sm:grid sm:grid-cols-2 sm:gap-6"
-          >
+          <div key={`experience-row-${index}`} className="w-full sm:grid sm:grid-cols-2 sm:gap-6">
             <ExperienceCard
               id={`exp-${index}`}
               experience={experience}
               onHover={() => setSelectedJob(experience)}
               onClick={() => {
                 const isOpening = selectedJob !== experience;
-                setSelectedJob((prev) =>
-                  prev === experience ? null : experience
-                );
+                setSelectedJob((prev) => prev === experience ? null : experience);
                 if (isMobile && isOpening) {
-                  // Smoothly bring selected card and inline details into view on mobile
                   requestAnimationFrame(() => {
-                    const el = document.getElementById(`exp-${index}`);
-                    el?.scrollIntoView({
+                    document.getElementById(`exp-${index}`)?.scrollIntoView({
                       behavior: "smooth",
                       block: "start",
-                      inline: "nearest",
                     });
                   });
                 }
@@ -145,20 +129,17 @@ const Experience = () => {
               controlsId={`exp-details-${index}`}
             />
 
-            {/* Desktop/tablet inline details beside the hovered card */}
-            <div className="hidden sm:block min-h-[200px]">
+            {/* Desktop details */}
+            <div className="hidden sm:block min-h-[180px]">
               <AnimatePresence mode="popLayout" initial={false}>
                 {selectedJob === experience && (
                   <motion.div
                     key={experience.title}
                     id={`exp-details-${index}`}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{
-                      duration: 0.25,
-                      ease: "easeOut"
-                    }}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
                   >
                     <ExperienceDetails experience={experience} />
                   </motion.div>
@@ -166,15 +147,15 @@ const Experience = () => {
               </AnimatePresence>
             </div>
 
-            {/* Mobile inline details below the card */}
+            {/* Mobile inline details */}
             <AnimatePresence initial={false}>
               {isMobile && selectedJob === experience && (
                 <motion.div
                   id={`exp-details-${index}`}
-                  className="sm:hidden col-span-2 px-2"
-                  initial={{ opacity: 0, y: 8 }}
+                  className="sm:hidden col-span-2 px-1"
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 6 }}
+                  exit={{ opacity: 0, y: 4 }}
                   transition={{ duration: 0.18 }}
                 >
                   <ExperienceDetails experience={experience} />

@@ -1,29 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { close, menu } from "../assets";
 import { navLinks } from "../data";
 
 const Navbar = () => {
   const [active, setActive] = useState("hero");
   const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setScrolled(scrollTop > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Observe top-level sections and derive the most visible one.
     const sections = Array.from(document.querySelectorAll("[data-section-id]"));
 
     const handleIntersect = (entries) => {
-      // Compute the entry with the largest intersection ratio among visible ones
       const visible = entries.filter((e) => e.isIntersecting);
       if (visible.length === 0) return;
       const top = visible.reduce((max, e) =>
@@ -43,73 +29,68 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full flex items-center bg-gradient-to-b from-black sm:bg-none p-8 sm:px-16 sm:py-10 fixed z-40 pointer-events-none">
-      <div className="w-full flex justify-between items-start mx-auto">
+    <nav className="apple-nav w-full fixed z-40 top-0 left-0">
+      <div className="max-w-[980px] mx-auto px-6 h-12 flex items-center justify-between">
+        {/* Logo */}
         <Link
           to="/"
-          className="flex items-start"
-          onClick={() => {
-            setActive("hero");
-            window.scrollTo(0, 0);
-          }}
+          onClick={() => { setActive("hero"); window.scrollTo(0, 0); }}
+          className="text-white text-[17px] font-semibold tracking-tight hover:text-white/80 transition-colors"
         >
-          <p className="text-white text-[26px] lg:text-[36px] font-bold pointer-events-auto cursor-pointer flex">
-            MJ
-          </p>
+          MJ
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-col gap-5">
+        {/* Desktop nav — centered links */}
+        <ul className="hidden sm:flex items-center gap-8">
           {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`group relative flex items-center ${
-                active === nav.id ? "text-white" : "text-slate-500"
-              } hover:text-white text-[18px] lg:text-[24px] font-bold pointer-events-auto cursor-pointer transition-colors`}
-              onClick={() => setActive(nav.id)}
-            >
-              {active === nav.id && (
-                <div className="fixed right-10 w-2 h-6 lg:h-8 bg-quaternary"></div>
-              )}
-              <a href={`#${nav.id}`} className="relative">
+            <li key={nav.id}>
+              <a
+                href={`#${nav.id}`}
+                onClick={() => setActive(nav.id)}
+                className={`text-[14px] font-normal tracking-tight transition-colors ${
+                  active === nav.id
+                    ? "text-white"
+                    : "text-[#a1a1a6] hover:text-white"
+                }`}
+              >
                 {nav.title}
-                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-quaternary transition-all duration-200 group-hover:w-full"></span>
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain pointer-events-auto cursor-pointer"
-            onClick={() => setToggle(!toggle)}
-          />
-
-          <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-30 rounded-xl`}
-          >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
-              {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.id ? "text-quaternary" : "text-secondary"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.id);
-                  }}
-                >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          className="sm:hidden flex flex-col gap-1.5 p-1 cursor-pointer"
+          onClick={() => setToggle(!toggle)}
+          aria-label="Menu"
+        >
+          <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${toggle ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${toggle ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-[1.5px] bg-white transition-all duration-200 ${toggle ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {toggle && (
+        <div className="sm:hidden border-t border-white/10 bg-black/90 backdrop-blur-xl">
+          <ul className="flex flex-col py-2">
+            {navLinks.map((nav) => (
+              <li key={nav.id}>
+                <a
+                  href={`#${nav.id}`}
+                  onClick={() => { setToggle(false); setActive(nav.id); }}
+                  className={`block px-6 py-3 text-[15px] transition-colors ${
+                    active === nav.id ? "text-white" : "text-[#a1a1a6]"
+                  }`}
+                >
+                  {nav.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

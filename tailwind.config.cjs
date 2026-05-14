@@ -4,10 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#011825",
-        secondary: "#F0EFEB",
-        tertiary: "#0D3056",
-        quaternary: "#1689C8",
+        primary: "#000000",
+        secondary: "#6e6e73",
+        tertiary: "#1d1d1f",
+        quaternary: "#0071e3",
+        "apple-gray": "#f5f5f7",
+        "apple-card": "#161617",
+        "apple-border": "rgba(255,255,255,0.1)",
       },
       screens: {
         'xs': "450px",
