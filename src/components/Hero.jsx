@@ -39,8 +39,8 @@ const Hero = ({ scrollContainer }) => {
             <div className="relative w-full h-[50px] sm:h-[60px] flex justify-center">
               <Position />
             </div>
-            <p className="mt-2 lg:mt-6 max-w-sm">
-              I love crafting <br className="hidden sm:block" /> captivating experiences for the digital world to savor.
+            <p className="mt-4 lg:mt-8 max-w-[500px] text-[#a1a1a6] text-[17px] md:text-[21px] font-medium tracking-wide leading-relaxed">
+              I love crafting captivating experiences for the digital world to savor.
             </p>
           </motion.div>
         </div>
