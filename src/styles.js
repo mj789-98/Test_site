@@ -2,7 +2,7 @@ const styles = {
   sectionText:
     "text-white font-bold tracking-tight md:text-[72px] sm:text-[48px] text-[36px] leading-none",
   sectionEyebrow:
-    "text-[#0071e3] text-[13px] font-semibold tracking-[0.06em] uppercase mb-2",
+    "text-gradient text-[13px] font-semibold tracking-[0.06em] uppercase mb-2",
 };
 
 export { styles };

@@ -30,13 +30,14 @@ const ProjectCard = ({ index, name, description, image, link }) => {
       } ${link ? "cursor-pointer" : ""}`}
     >
       {/* Image side */}
-      <div className="w-full md:w-3/5 overflow-hidden">
+      <div className="w-full md:w-3/5 overflow-hidden relative">
         <img
           src={image}
           alt={name}
           className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           style={{ borderRadius: 0, maxHeight: 420 }}
         />
+        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
       </div>
 
       {/* Text side */}
@@ -45,7 +46,7 @@ const ProjectCard = ({ index, name, description, image, link }) => {
           isEven ? "md:text-left" : "md:text-right"
         }`}
       >
-        <p className="text-[#0071e3] text-[12px] font-semibold tracking-[0.06em] uppercase mb-3">
+        <p className="text-gradient text-[12px] font-semibold tracking-[0.06em] uppercase mb-3">
           Project
         </p>
         <h3 className="text-white font-semibold text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight mb-4">

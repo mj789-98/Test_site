@@ -13,13 +13,14 @@ const Navbar = () => {
       const visible = entries.filter((e) => e.isIntersecting);
       if (visible.length === 0) return;
       const top = visible.reduce((max, e) =>
-        e.intersectionRatio > max.intersectionRatio ? e : max
+        e.intersectionRect.height > max.intersectionRect.height ? e : max
       );
       const id = top.target.getAttribute("data-section-id");
       if (id) setActive(id);
     };
 
     const observer = new IntersectionObserver(handleIntersect, {
+      root: document.querySelector('.wrapper'),
       threshold: [0.15, 0.3, 0.5, 0.75, 1],
       rootMargin: "0px 0px -35% 0px",
     });
@@ -34,7 +35,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          onClick={() => { setActive("hero"); window.scrollTo(0, 0); }}
+          onClick={() => { setActive("hero"); document.querySelector('.wrapper')?.scrollTo(0, 0); }}
           className="text-white text-[17px] font-semibold tracking-tight hover:text-white/80 transition-colors"
         >
           MJ
