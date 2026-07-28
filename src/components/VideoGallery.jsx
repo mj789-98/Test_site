@@ -2,13 +2,34 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 const sampleVideos = [
-  { id: "1Nv5hVfKiNVFbyb20RlLkYmeghM-qM1fb", title: "Project Demo 1", description: "Click to watch" },
-  { id: "1p9RjlwkagGRQHbW27lGA4_0E3j-ihSMT", title: "Project Demo 2", description: "Click to watch" },
-  { id: "19dwT8RdOe3ultq48CbVmyVk_PQ9agTjc", title: "Project Demo 3", description: "Click to watch" },
+  {
+    id: "1Nv5hVfKiNVFbyb20RlLkYmeghM-qM1fb",
+    title: "Cup Heroes",
+    description:
+      "Wave-based mobile RPG built in Unity 6 for Android — stylised low-poly combat, a branching skill tree, shop economy and player progression.",
+    duration: "1:37",
+  },
+  {
+    id: "1p9RjlwkagGRQHbW27lGA4_0E3j-ihSMT",
+    title: "Third-Person Shooter — Mobile Prototype",
+    description:
+      "Unity third-person controller driven entirely by touch input: virtual joystick, aim reticle, jump and fire, tested against targets in a greybox level.",
+    duration: "0:39",
+  },
+  {
+    id: "19dwT8RdOe3ultq48CbVmyVk_PQ9agTjc",
+    title: "2D Boxing — Local Versus",
+    description:
+      "Two-player Unity fighter with hitbox-driven punch combat, per-player health bars and animator-based damage states.",
+    duration: "0:35",
+  },
 ];
 
 const VideoCard = ({ video, onClick }) => {
-  const thumbnailUrl = `https://lh3.googleusercontent.com/d/${video.id}=w400`;
+  // Drive auto-generates thumbnails from the first frame, which is rarely the
+  // most representative one. `thumbnail` overrides it when supplied.
+  const thumbnailUrl =
+    video.thumbnail || `https://lh3.googleusercontent.com/d/${video.id}=w400`;
 
   return (
     <div className="video-card group" onClick={() => onClick(video)}>
@@ -16,6 +37,7 @@ const VideoCard = ({ video, onClick }) => {
         <img
           src={thumbnailUrl}
           alt={video.title}
+          loading="lazy"
           className="video-thumbnail"
           onError={(e) => {
             e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect fill='%230a0a0a' width='400' height='225'/%3E%3Ctext x='50%25' y='50%25' fill='%23666' text-anchor='middle' dy='.3em' font-family='sans-serif' font-size='14'%3EVideo Preview%3C/text%3E%3C/svg%3E";
@@ -28,6 +50,7 @@ const VideoCard = ({ video, onClick }) => {
             </svg>
           </div>
         </div>
+        {video.duration && <span className="video-duration">{video.duration}</span>}
       </div>
       <div className="video-info">
         <h3 className="video-title">{video.title}</h3>
@@ -78,7 +101,7 @@ const VideoGallery = ({ videos = sampleVideos }) => {
           Video <span className="text-gradient">Gallery</span>
         </h2>
         <p className="section-description">
-          Project demos and highlights
+          Gameplay and development walkthroughs from my Unity projects
         </p>
       </div>
 

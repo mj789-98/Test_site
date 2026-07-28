@@ -150,8 +150,10 @@ const PerformanceMonitor = () => {
     URL.revokeObjectURL(url);
   };
 
+  if (!import.meta.env.DEV) return null;
+
   return (
-    <div className="fixed top-4 right-0 z-50 font-mono">
+    <div className="fixed bottom-4 right-0 z-50 font-mono">
       {/* Collapsed state - small tab on the border */}
       {!isExpanded && (
         <div

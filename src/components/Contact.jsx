@@ -1,19 +1,42 @@
 import { motion, useAnimation } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { SectionWrapper } from "../hoc";
 import { styles } from "../styles";
 import { profilepic } from "../assets";
+import Socials from "./Socials";
+
+const FORM_ENDPOINT = "https://getform.io/f/8b086558-47d4-49d0-852d-ec8c22da40f7";
 
 const Contact = () => {
   const controls = useAnimation();
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
 
   useEffect(() => {
     controls.start("show");
   }, [controls]);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    setStatus("sending");
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <div className="md:px-20 lg:px-40 pb-20">
+    <div className="px-6 md:px-20 lg:px-40 pb-20">
       <motion.div
         initial="hidden"
         animate={controls}
@@ -49,8 +72,9 @@ const Contact = () => {
 
         {/* Form */}
         <form
-          action="https://getform.io/f/8b086558-47d4-49d0-852d-ec8c22da40f7"
+          action={FORM_ENDPOINT}
           method="POST"
+          onSubmit={handleSubmit}
           className="max-w-xl flex flex-col gap-5"
         >
           <div className="flex flex-col gap-1.5">
@@ -58,6 +82,7 @@ const Contact = () => {
             <input
               type="text"
               name="name"
+              required
               placeholder="Your full name"
               className="apple-input"
             />
@@ -68,6 +93,7 @@ const Contact = () => {
             <input
               type="email"
               name="email"
+              required
               placeholder="you@example.com"
               className="apple-input"
             />
@@ -77,18 +103,41 @@ const Contact = () => {
             <label className="text-[#a1a1a6] text-sm font-medium">Message</label>
             <textarea
               name="message"
+              required
               placeholder="Tell me about your project…"
               rows="7"
               className="apple-input resize-none"
             />
           </div>
 
-          <div>
-            <button type="submit" className="apple-btn mt-2">
-              Send Message
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              type="submit"
+              className="apple-btn mt-2"
+              disabled={status === "sending"}
+              style={status === "sending" ? { opacity: 0.6, cursor: "wait" } : undefined}
+            >
+              {status === "sending" ? "Sending…" : "Send Message"}
             </button>
+
+            <p
+              role="status"
+              aria-live="polite"
+              className={`mt-2 text-sm ${
+                status === "error" ? "text-[#ff6b6b]" : "text-[#0071e3]"
+              }`}
+            >
+              {status === "sent" && "Thanks — I'll get back to you soon."}
+              {status === "error" &&
+                "Something went wrong. Email me directly and I'll pick it up."}
+            </p>
           </div>
         </form>
+
+        <div className="mt-10 max-w-xl">
+          <p className="text-[#6e6e73] text-[13px] mb-3">Or find me on</p>
+          <Socials />
+        </div>
       </motion.div>
     </div>
   );

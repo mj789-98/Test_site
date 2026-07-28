@@ -35,14 +35,14 @@ const ExperienceCard = ({ id, experience, onHover, onClick, isActive, isMobile, 
       <div className={isActive ? "pl-4" : ""}>
         <h3
           className={`text-xl lg:text-2xl font-semibold tracking-tight transition-colors ${
-            isActive ? "text-white" : "text-[#6e6e73] group-hover:text-white"
+            isActive ? "text-white" : "text-[#a1a1a6] group-hover:text-white"
           }`}
         >
           {experience.title}
         </h3>
         <p
           className={`text-base mt-1 transition-colors ${
-            isActive ? "text-[#a1a1a6]" : "text-[#48484a]"
+            isActive ? "text-[#a1a1a6]" : "text-[#6e6e73]"
           }`}
         >
           {experience.company_name}
@@ -99,10 +99,10 @@ const Experience = () => {
   }, []);
 
   return (
-    <div className="sm:my-16">
+    <div className="sm:my-16 px-6 md:px-20 lg:px-40">
       <motion.div variants={textVariant()}>
         <p className={styles.sectionEyebrow}>Career</p>
-        <h2 className={`${styles.sectionText} text-center md:text-left`}>Experience</h2>
+        <h2 className={styles.sectionText}>Experience</h2>
       </motion.div>
 
       <div className="relative mt-10 md:mt-16 md:px-4 flex flex-col gap-3">

@@ -29,3 +29,5 @@ dist-ssr
 .vscode
 Screenshot (213).png
 Manas-Joshi-CV.pdf
+# the served copy must ship with the build — the bare pattern above matches at any depth
+!public/Manas-Joshi-CV.pdf

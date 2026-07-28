@@ -3,7 +3,7 @@ import { algorithms, devnotes, oscs, planeGame } from "../assets";
 export const navLinks = [
   {
     id: "hero",
-    title: "Hero",
+    title: "Home",
   },
   {
     id: "portfolio",
@@ -25,6 +25,10 @@ export const navLinks = [
     id: "contact",
     title: "Contact",
   },
+];
+
+export const socials = [
+  { name: "GitHub", url: "https://github.com/mj789-98" },
 ];
 
 const experiences = [
@@ -106,9 +110,9 @@ const portfolio = [
     link: "https://play.google.com/store/apps/details?id=com.lightning.android.Plane",
   },
   {
-    name: "Published on Google PlayStore",
+    name: "Guess The Picture",
     description:
-      "Published a game on Google PlayStore as an Indie game Developer",
+      "A picture-guessing puzzle game, self-published on the Google Play Store as an indie developer.",
     image: oscs,
     link: "https://play.google.com/store/apps/details?id=com.manasj.guessthepicture",
   },
@@ -126,32 +130,27 @@ const portfolio = [
 ];
 
 export { experiences, portfolio };
-// CV-aligned skills list
-export const skills = [
-  // Core Game/VR
-  "Unity",
-  "C#",
-  "VR Development",
-  "XR Interaction Toolkit",
-  "Oculus SDK",
-  "Multiplayer (Networking)",
-
-  // Backend/Services
-  "Firebase",
-
-  // Design & Content
-  "Game Design",
-  "Level Design",
-  "UI/UX",
-  "Animation",
-  "Blender",
-  "3D Modeling",
-
-  // Web & Tools
-  "JavaScript",
-  "React",
-  "Git",
-
-  // General
-  "Problem Solving",
+// CV-aligned skills, grouped for display
+export const skillGroups = [
+  {
+    label: "Game & VR",
+    items: [
+      "Unity",
+      "C#",
+      "VR Development",
+      "XR Interaction Toolkit",
+      "Oculus SDK",
+      "Multiplayer (Networking)",
+    ],
+  },
+  {
+    label: "Design & Content",
+    items: ["Game Design", "Level Design", "UI/UX", "Animation", "Blender", "3D Modeling"],
+  },
+  {
+    label: "Web & Tools",
+    items: ["JavaScript", "React", "Firebase", "Git", "Problem Solving"],
+  },
 ];
+
+export const skills = skillGroups.flatMap((group) => group.items);

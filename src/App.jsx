@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import {
   Contact,
   Experience,
+  Footer,
   Hero,
   Navbar,
   Portfolio,
@@ -38,6 +39,7 @@ const App = () => {
           <div id="contact" className="relative z-30 bg-primary">
             <Contact />
           </div>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>
