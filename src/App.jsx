@@ -27,14 +27,14 @@ const App = () => {
           <div id="portfolio" className="relative z-30 bg-primary mt-[-2px]">
             <Portfolio />
           </div>
+          <div id="videos" data-section-id="videos" className="relative z-30 bg-primary">
+            <VideoGallery />
+          </div>
           <div id="experience" className="relative z-30 bg-primary">
             <Experience />
           </div>
           <div id="skills" className="relative z-30 bg-primary">
             <Skills />
-          </div>
-          <div id="videos" data-section-id="videos" className="relative z-30 bg-primary">
-            <VideoGallery />
           </div>
           <div id="contact" className="relative z-30 bg-primary">
             <Contact />

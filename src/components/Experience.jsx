@@ -21,7 +21,7 @@ const ExperienceCard = ({ id, experience, onHover, onClick, isActive, isMobile, 
       aria-controls={controlsId}
       whileHover={{ x: 4 }}
       whileTap={{ scale: 0.99 }}
-      className={`group cursor-pointer p-6 rounded-2xl relative transition-all duration-200 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]/60 ${
+      className={`group cursor-pointer px-5 py-4 rounded-2xl relative transition-all duration-200 border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3]/60 ${
         isActive
           ? "bg-white/5 border-white/10"
           : "border-transparent hover:bg-white/[0.03] hover:border-white/[0.06]"
@@ -34,14 +34,14 @@ const ExperienceCard = ({ id, experience, onHover, onClick, isActive, isMobile, 
 
       <div className={isActive ? "pl-4" : ""}>
         <h3
-          className={`text-xl lg:text-2xl font-semibold tracking-tight transition-colors ${
+          className={`text-lg lg:text-xl font-semibold tracking-tight transition-colors ${
             isActive ? "text-white" : "text-[#a1a1a6] group-hover:text-white"
           }`}
         >
           {experience.title}
         </h3>
         <p
-          className={`text-base mt-1 transition-colors ${
+          className={`text-sm mt-1 transition-colors ${
             isActive ? "text-[#a1a1a6]" : "text-[#6e6e73]"
           }`}
         >
@@ -71,14 +71,17 @@ const ExperienceCard = ({ id, experience, onHover, onClick, isActive, isMobile, 
 
 const ExperienceDetails = ({ experience }) => {
   return (
-    <div className="mt-3">
-      <div className="apple-glass p-6 lg:p-8">
-        <ul className="space-y-5">
+    <div className="mt-2">
+      <div className="apple-glass p-5 lg:p-6">
+        <ul className="space-y-3">
           {experience.details.map((detail, index) => (
+            // Not a flex row: `detail` is injected HTML containing inline
+            // <span>s, and flex would promote each one to its own flex item,
+            // breaking the sentence into oddly spaced chunks.
             <li
               key={`experience-detail-${index}`}
-              className="text-[#d1d1d6] text-sm md:text-base lg:text-lg leading-relaxed flex gap-3"
-              dangerouslySetInnerHTML={{ __html: `<span class="text-[#0071e3] font-bold select-none">—</span> ${detail}` }}
+              className="text-[#d1d1d6] text-sm md:text-base leading-relaxed pl-5 -indent-5"
+              dangerouslySetInnerHTML={{ __html: `<span class="text-[#0071e3] font-bold select-none mr-2">—</span>${detail}` }}
             />
           ))}
         </ul>
@@ -99,13 +102,13 @@ const Experience = () => {
   }, []);
 
   return (
-    <div className="sm:my-16 px-6 md:px-20 lg:px-40">
+    <div className="sm:my-8 mx-auto w-full max-w-[1200px] px-6">
       <motion.div variants={textVariant()}>
         <p className={styles.sectionEyebrow}>Career</p>
         <h2 className={styles.sectionText}>Experience</h2>
       </motion.div>
 
-      <div className="relative mt-10 md:mt-16 md:px-4 flex flex-col gap-3">
+      <div className="relative mt-8 md:mt-10 flex flex-col gap-1.5">
         {experiences.map((experience, index) => (
           <div key={`experience-row-${index}`} className="w-full sm:grid sm:grid-cols-2 sm:gap-6">
             <ExperienceCard
@@ -129,8 +132,9 @@ const Experience = () => {
               controlsId={`exp-details-${index}`}
             />
 
-            {/* Desktop details */}
-            <div className="hidden sm:block min-h-[180px]">
+            {/* Desktop details — no reserved min-height; collapsed rows stay
+                at card height instead of holding open an empty 180px slot. */}
+            <div className="hidden sm:block">
               <AnimatePresence mode="popLayout" initial={false}>
                 {selectedJob === experience && (
                   <motion.div

@@ -3,11 +3,43 @@ import { createPortal } from "react-dom";
 
 const sampleVideos = [
   {
+    id: "yFjFdLrm2oU",
+    source: "youtube",
+    title: "Plane — Endless Arcade Flight Shooter",
+    description:
+      "Endless arcade flight shooter for Android — procedural obstacle waves, tilt-free touch steering and score-chasing runs.",
+  },
+  {
+    id: "1JVuvNeR06Do6V59Vrhi-QgiujTBY4bNY",
+    title: "Battleverse",
+    description:
+      "PUBG-style multiplayer battle royale shooter — real-time networked matches built on Photon PUN.",
+  },
+  {
+    id: "19ql1zvYEL5xY0YCWqMpiejGVnNk5HoJU",
+    title: "Leap On",
+    description:
+      "Endless arcade score-chaser — time your leaps between platforms and push past your best run.",
+  },
+  {
+    id: "1tdAos26TSGtObBzzUoILl9kFTAttIHWl",
+    title: "Turn",
+    description:
+      "Tap-timing arcade runner through an endless maze of corners — mistime a turn and your cube shrinks, narrowing the passage; nail four in a row and it grows back.",
+  },
+  {
     id: "1Nv5hVfKiNVFbyb20RlLkYmeghM-qM1fb",
     title: "Cup Heroes",
     description:
       "Wave-based mobile RPG built in Unity 6 for Android — stylised low-poly combat, a branching skill tree, shop economy and player progression.",
     duration: "1:37",
+  },
+  {
+    id: "1EOXk4_J_B7bgpYeMJ3Kv2NoYZEwQJt7n",
+    title: "Solitaire",
+    tag: "Nakama",
+    description:
+      "Classic Klondike solitaire built in Unity — drag-and-drop card handling, undo, and score tracking.",
   },
   {
     id: "1p9RjlwkagGRQHbW27lGA4_0E3j-ihSMT",
@@ -25,11 +57,23 @@ const sampleVideos = [
   },
 ];
 
+// Drive's lh3.googleusercontent.com/d/<id> host throttles aggressively and
+// starts failing after a handful of loads; the /thumbnail endpoint is stable.
+const thumbnailFor = (video) =>
+  video.thumbnail ||
+  (video.source === "youtube"
+    ? `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`
+    : `https://drive.google.com/thumbnail?id=${video.id}&sz=w640`);
+
+const embedFor = (video) =>
+  video.source === "youtube"
+    ? `https://www.youtube.com/embed/${video.id}`
+    : `https://drive.google.com/file/d/${video.id}/preview`;
+
 const VideoCard = ({ video, onClick }) => {
   // Drive auto-generates thumbnails from the first frame, which is rarely the
   // most representative one. `thumbnail` overrides it when supplied.
-  const thumbnailUrl =
-    video.thumbnail || `https://lh3.googleusercontent.com/d/${video.id}=w400`;
+  const thumbnailUrl = thumbnailFor(video);
 
   return (
     <div className="video-card group" onClick={() => onClick(video)}>
@@ -53,7 +97,10 @@ const VideoCard = ({ video, onClick }) => {
         {video.duration && <span className="video-duration">{video.duration}</span>}
       </div>
       <div className="video-info">
-        <h3 className="video-title">{video.title}</h3>
+        <h3 className="video-title">
+          {video.title}
+          {video.tag && <span className="video-title-tag"> ({video.tag})</span>}
+        </h3>
         {video.description && <p className="video-description">{video.description}</p>}
       </div>
     </div>
@@ -73,7 +120,7 @@ const VideoModal = ({ video, onClose }) => {
         </button>
         <div className="video-modal-content">
           <iframe
-            src={`https://drive.google.com/file/d/${video.id}/preview`}
+            src={embedFor(video)}
             title={video.title}
             allow="autoplay; encrypted-media"
             allowFullScreen

@@ -10,16 +10,16 @@ export const navLinks = [
     title: "Portfolio",
   },
   {
+    id: "videos",
+    title: "Videos",
+  },
+  {
     id: "experience",
     title: "Experience",
   },
   {
     id: "skills",
     title: "Skills",
-  },
-  {
-    id: "videos",
-    title: "Videos",
   },
   {
     id: "contact",
@@ -29,6 +29,9 @@ export const navLinks = [
 
 export const socials = [
   { name: "GitHub", url: "https://github.com/mj789-98" },
+  // `name` must match a key in Socials.jsx's ICONS map, or it falls back to
+  // the generic link glyph.
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/manas-joshi-7a2105228/" },
 ];
 
 const experiences = [
@@ -104,6 +107,7 @@ const experiences = [
 const portfolio = [
   {
     name: "Plane",
+    tag: "Self-published",
     description:
       "Fly your plane, dodge obstacles, beat your high score! Classic arcade action on Google Play Store.",
     image: planeGame,
@@ -111,6 +115,7 @@ const portfolio = [
   },
   {
     name: "Guess The Picture",
+    tag: "Self-published",
     description:
       "A picture-guessing puzzle game, self-published on the Google Play Store as an indie developer.",
     image: oscs,
@@ -118,9 +123,11 @@ const portfolio = [
   },
   {
     name: "PC Game",
+    tag: "Self-published",
     description:
       "Touch the finish line, avoiding obstacles in different challenging environments",
     image: devnotes,
+    link: "https://mjking.itch.io/fall-ball",
   },
   {
     name: "Visually Understanding Data",
